@@ -7,7 +7,7 @@
     <groupId>com.notoriousdev</groupId>
     <artifactId>ChatPing</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
 
     <!--More information about the project-->
     <name>ChatPing</name>
