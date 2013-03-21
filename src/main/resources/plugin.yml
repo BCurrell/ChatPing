@@ -1,0 +1,11 @@
+name: ChatPing
+main: com.notoriousdev.chatping.ChatPing
+version: 0.0.1-SNAPSHOT
+author: BranicYeti
+website: http://www.notoriousdev.com
+
+permissions:
+  chatping.ping:
+    default: true
+  chatping.ping.exempt:
+    default: OP
