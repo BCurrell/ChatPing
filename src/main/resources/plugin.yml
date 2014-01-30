@@ -8,4 +8,4 @@ permissions:
   chatping.ping:
     default: true
   chatping.ping.exempt:
-    default: OP
+    default: false
