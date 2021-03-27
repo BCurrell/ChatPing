@@ -7,7 +7,7 @@
     <groupId>com.notoriousdev</groupId>
     <artifactId>ChatPing</artifactId>
     <packaging>jar</packaging>
-    <version>1.1</version>
+    <version>1.2</version>
 
     <!--More information about the project-->
     <name>ChatPing</name>
@@ -22,19 +22,18 @@
     <repositories>
         <!--Bukkit-->
         <repository>
-            <id>bukkit-repo</id>
-            <url>http://repo.bukkit.org/content/groups/public</url>
+            <id>papermc</id>
+            <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <!--The jars that are downloaded-->
     <dependencies>
-        <!--Bukkit-->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.7.2-R0.3-SNAPSHOT</version>
-            <type>jar</type>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -48,8 +47,8 @@
                 <version>2.5.1</version>
                 <configuration>
                     <!--Java Version-->
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>

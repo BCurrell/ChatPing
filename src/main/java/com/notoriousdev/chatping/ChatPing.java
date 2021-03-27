@@ -1,9 +1,11 @@
 package com.notoriousdev.chatping;
 
+import io.papermc.paper.event.player.AsyncChatEvent;
 import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,26 +24,22 @@ public class ChatPing extends JavaPlugin implements Listener
         getServer().getPluginManager().registerEvents(this, this);
     }
 
-    @EventHandler(ignoreCancelled = true)
-    public void onPlayerChat(AsyncPlayerChatEvent event)
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void onPlayerChat(AsyncChatEvent event)
     {
+        getLogger().info("Chat event");
         Player player = event.getPlayer();
-        String message = event.getMessage();
+        String message = event.message().toString();
         if (Permissions.PING.isAuthorised(player))
         {
             for (final Player oPlayer : getServer().getOnlinePlayers())
             {
-                if (oPlayer != player && (message.toLowerCase().contains(oPlayer.getName().toLowerCase()) || message.toLowerCase().contains(oPlayer.getDisplayName().toLowerCase())) && !Permissions.PING_EXEMPT.isAuthorised(oPlayer))
+                // oPlayer != player &&
+                if ((message.toLowerCase().contains(oPlayer.getName().toLowerCase()) || message.toLowerCase().contains(oPlayer.displayName().toString().toLowerCase())) && !Permissions.PING_EXEMPT.isAuthorised(oPlayer))
                 {
-                    oPlayer.playSound(oPlayer.getLocation(), Sound.ORB_PICKUP, 20, 1);
-                    getServer().getScheduler().runTaskLater(this, new Runnable()
-                    {
-                        @Override
-                        public void run()
-                        {
-                            oPlayer.playSound(oPlayer.getLocation(), Sound.ORB_PICKUP, 20, 1);
-                        }
-                    }, 5L);
+                    this.getLogger().info("Playing sound for " + oPlayer.getName());
+                    oPlayer.playSound(oPlayer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 20, 1);
+                    getServer().getScheduler().runTaskLater(this, () -> oPlayer.playSound(oPlayer.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 20, 1), 5L);
                 }
             }
         }
